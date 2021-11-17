@@ -23,13 +23,13 @@ while game:
         if event.type == pygame.QUIT:
             game = False
 
-    if pygame.key.get_pressed()[K_a]: #esquerda
+    if pygame.key.get_pressed()[K_LEFT]: #esquerda
         x -= 20
-    if pygame.key.get_pressed()[K_d]: #direita
+    if pygame.key.get_pressed()[K_RIGHT]: #direita
         x += 20
-    if pygame.key.get_pressed()[K_w]: #cima
+    if pygame.key.get_pressed()[K_UP]: #cima
         y -= 20
-    if pygame.key.get_pressed()[K_s]: #baixo
+    if pygame.key.get_pressed()[K_DOWN]: #baixo
         y += 20
 
 
