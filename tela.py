@@ -35,10 +35,10 @@ while game:
 
     window.fill((255, 255, 255)) 
 
-    pygame.draw.rect(window,(255,0,0),(x,y,40,100))
+    pygame.draw.rect(window,(255,182,193),(x,y,30,30))
     if y >= altura:
         y = 0
-    y += 5
+    #y += 5 - Oq faz ele ficar se movimentando sem comando
 
     pygame.display.update() 
 
