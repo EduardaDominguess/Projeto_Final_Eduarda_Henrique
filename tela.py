@@ -1,6 +1,6 @@
 
 import pygame
-from pygame.constants import KEYDOWN, K_a, K_d, K_s, K_w
+from pygame.constants import K_DOWN, K_LEFT, K_RIGHT, K_UP
 
 
 pygame.init()
