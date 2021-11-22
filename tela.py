@@ -9,6 +9,8 @@ altura = 400
 largura = 500
 x = largura/2
 y = altura/2
+x1 = largura/2
+y1 = altura/2
 
 window = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption('Donkey Kong')
@@ -35,7 +37,8 @@ while game:
 
     window.fill((255, 255, 255)) 
 
-    pygame.draw.rect(window,(255,182,193),(x,y,30,30))
+    personagem = pygame.draw.rect(window,(255,182,193),(x,y,30,30))
+    barril = pygame.draw.rect(window,(255,182,193),(x1,y1,20,50))
     if y >= altura:
         y = 0
     #y += 5 - Oq faz ele ficar se movimentando sem comando
