@@ -9,8 +9,8 @@ pygame.init()
 
 #Váriavies
 
-altura = 400
-largura = 500
+altura = 480
+largura = 560
 x = largura/2
 y = altura/2
 x1 = largura/2
