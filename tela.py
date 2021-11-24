@@ -16,6 +16,11 @@ y = altura/2
 x1 = largura/2
 y1 = altura/2
 
+
+Image = pygame.sprite.Group()
+Sapo1 = Sapos1()
+Image.add(Sapo1)
+
 window = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption('Donkey Kong')
 time = pygame.time.Clock()
@@ -40,7 +45,9 @@ while game:
 
 
     window.fill((255, 255, 255)) 
-
+    
+    Image.draw(window)
+    Image.update()
     personagem = pygame.draw.rect(window,(255,182,193),(x,y,30,30))
     barril = pygame.draw.rect(window,(255,182,193),(x1,y1,20,50))
     if y >= altura:
