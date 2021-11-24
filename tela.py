@@ -53,7 +53,37 @@ while game:
     if y >= altura:
         y = 0
     #y += 5 - Oq faz ele ficar se movimentando sem comando
+    
+    #carro 1
+    if x1 >= largura:
+        x1 = 0
+    x1 += 1
 
-    pygame.display.update() 
+    #carro 2
+    if x2 >= largura:
+        x2 = 0
+    x2 += 1
+
+    #carro 3
+    if x3 >= largura:
+        x3 = 0
+    x3 += 1
+
+    if y >= largura:
+        y = 0
+    #y += 5 - Oq faz ele ficar se movimentando sem comando
+
+
+    if personagem.colliderect(carro1):
+        y = 0
+        x = 0
+    if personagem.colliderect(carro2):
+        y = 0
+        x = 0
+    if personagem.colliderect(carro3):
+        y = 0
+        x = 0 
+
+    pygame.display.flip()
 
 pygame.quit()  
