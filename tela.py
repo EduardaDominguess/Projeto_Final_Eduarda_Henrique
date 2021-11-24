@@ -1,9 +1,13 @@
 
 import pygame
+from pygame.locals import *
 from pygame.constants import K_DOWN, K_LEFT, K_RIGHT, K_UP
+import os
 
 
 pygame.init()
+
+#Váriavies
 
 altura = 400
 largura = 500
