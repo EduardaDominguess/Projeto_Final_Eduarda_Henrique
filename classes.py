@@ -27,6 +27,12 @@ class Vidas:
         self.posicaox = posicao[0]
         self.posicaoy = posicao[y]
 
+#moeda
+class Moeda:
+    def __init__(self, posicao):
+        self.posicaox = posicao[0]
+        self.posicaoy = posicao[1]
+
 #lista carros
 carros_left = ['carro1', 'carro2','carro3']
 carros_right = ['carro4', 'carro5','carro6']
