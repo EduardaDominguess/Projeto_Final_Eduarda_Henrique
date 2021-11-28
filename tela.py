@@ -3,7 +3,44 @@ import pygame
 from pygame.locals import *
 from pygame.constants import K_DOWN, K_LEFT, K_RIGHT, K_UP
 import os
+import numpy as np
+import random
+import math
+import sys
+from classes import Rua1, Rua2, Rua3, Rua4, Rua5, Sapo, Vidas
 
+pygame.init()
+
+#nome
+pygame.display.set_caption("Don't get hit!")
+
+#tela
+window = pygame.display.set_mode((largura, altura))
+
+#placar
+score = 0
+life = 0
+
+#Carregar imagens 
+
+#Imagens das telas
+telainicial1 = pygame.image.load(os.path.join("Imagens", "Telainicio.png"))
+telafinal = pygame.image.load(os.path.join("Imagens", "Telafinal.png"))
+
+#Imagem do cenário
+cenario = pygame.image.load(os.path.join("Imagens", "Background.png")).convert()
+
+#Imagens da sapo 
+sapo1 = pygame.image.load(os.path.join('Imagens','SAPO1.1.png')).convert_alpha()
+sapo2 = pygame.image.load(os.path.join('Imagens','SAPO1.2.png')).convert_alpha()
+sapo3 = pygame.image.load(os.path.join('Imagens','SAPO1.3.png')).convert_alpha()
+sapo4 = pygame.image.load(os.path.join('Imagens','SAPO1.4.png')).convert_alpha()
+
+#Imagem da moeda
+moeda = pygame.image.load(os.path.join('Imagens','moeda.png')).convert_alpha()
+
+#Icone das vidas
+vida = pygame.image.load(os.path.join('Imagens','heart.png')).convert_alpha()
 
 pygame.init()
 
@@ -17,15 +54,95 @@ x1 = largura/2
 y1 = altura/2
 
 
-Image = pygame.sprite.Group()
-Sapo1 = Sapos1()
-Image.add(Sapo1)
+'''LISTAS'''
+#Lista velocidade
+velocidade = [2,3]
+v = 4
 
-window = pygame.display.set_mode((largura, altura))
-pygame.display.set_caption('Donkey Kong')
-time = pygame.time.Clock()
+#lista vidas
+lista_vidasx = np.arange(50,650,50)
+lista_vidasy = np.arange(34,650,50)
+lista_vidas_inicial = []
+
+for i in lista_vidasx:
+    for d in lista_vidasy:
+        lista_vidas_inicial.append([i,d])
+
+#apagando vidas
+lista_vidas = []
+vida = True
+for i in range (len(lista_vidas_inicial)):
+    if lista_vidas_inicial[i][1] == 34:
+        if lista_vidas_inicial[i][0] == 50 or lista_vidas_inicial[i][0] == 208 or lista_vidas_inicial[i][0] == 464 or lista_vidas_inicial[i][0]:
+            pass
+        else:
+            lista_vidas.append(lista_vidas_inicial[i])
+    elif lista_vidas_inicial[i][1] == 275:
+        if lista_vidas_inicial[i][0] == 336 or lista_vidas_inicial[i][0] == 592 or lista_vidas_inicial[i][0] == 976:
+            pass
+        else:
+            lista_vidas.append(lista_vidas_inicial[i])
+    else:
+        lista_vidas.append(lista_vidas_inicial[i])
 
 
+#lista moedas
+lista_moedax = np.arange(50,650,50)
+lista_moeday = np.arange(34,650,50)
+lista_moeda_inicial = []
+
+for i in lista_moedax:
+    for d in lista_moeday:
+        lista_moeda_inicial.append([i,d])
+
+#apagando moedas
+lista_moeda = []
+moeda = True
+for i in range (len(lista_moeda_inicial)):
+    if lista_moeda_inicial[i][1] == 34:
+        if lista_moeda_inicial[i][0] == 50 or lista_moeda_inicial[i][0] == 208 or lista_moeda_inicial[i][0] == 464 or lista_moeda_inicial[i][0]:
+            pass
+        else:
+            lista_moeda.append(lista_moeda_inicial[i])
+    elif lista_moeda_inicial[i][1] == 275:
+        if lista_moeda_inicial[i][0] == 336 or lista_moeda_inicial[i][0] == 592 or lista_moeda_inicial[i][0] == 976:
+            pass
+        else:
+            lista_moeda.append(lista_moeda_inicial[i])
+    else:
+        lista_moeda.append(lista_moeda_inicial[i])
+        
+     
+'''OBJETOS'''
+#ARRUMAR NOME CLASSES
+#sapo
+sapo_obj = Sapo([1072,258])
+
+#vida
+vida_obj = Vidas(random.choice(lista_vidas))
+
+#moedas
+#coin_obj = Moedas(random.choice(lista_vidas))
+
+#Carros
+obj1 = Rua1(random.choice(velocidade))
+a1 = obj1.carro
+obj2 = Rua2(random.choice(velocidade))
+a2 = obj2.carro
+obj3 = Rua3(random.choice(velocidade))
+a3 = obj3.carro  
+obj4 = Rua4(random.choice(velocidade))
+a4 = obj4.carro  
+obj5 = Rua5(random.choice(velocidade))
+a5 = obj5.carro  
+
+#Criando o relógio do pygame
+relogio = pygame.time.Clock()
+
+canario = False
+
+'''Game loop'''
+#geral
 game = True
 while game:
     time.tick(10)
