@@ -98,31 +98,31 @@ class Carros:
 '''RUAS'''
 #RUA1
 class Rua1:
-    def __init__(self,velocidae):
+    def __init__(self,velocidade):
         self.velocidade = velocidade
         self.carro = Carros(1, velocidade)
         self.carro.movimento()
 
 class Rua2:
-    def __init__(self,velocidae):
+    def __init__(self,velocidade):
         self.velocidade = velocidade
         self.carro = Carros(1, velocidade)
         self.carro.movimento()
 
 class Rua3:
-    def __init__(self,velocidae):
+    def __init__(self,velocidade):
         self.velocidade = velocidade
         self.carro = Carros(1, velocidade)
         self.carro.movimento()
 
 class Rua4:
-    def __init__(self,velocidae):
+    def __init__(self,velocidade):
         self.velocidade = velocidade
         self.carro = Carros(1, velocidade)
         self.carro.movimento()
 
 class Rua5:
-    def __init__(self,velocidae):
+    def __init__(self,velocidade):
         self.velocidade = velocidade
         self.carro = Carros(1, velocidade)
         self.carro.movimento()
