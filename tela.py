@@ -186,6 +186,15 @@ while game:
             if evento.type == pygame.QUIT:
                 game = False
                 sys.exit()
+        if pygame.key.get_pressed()[K_LEFT]: #esquerda
+            sapo_obj.posicaox += 20
+        if pygame.key.get_pressed()[K_RIGHT]: #direita
+            sapo_obj.posicaox -= 20
+        if pygame.key.get_pressed()[K_UP]: #cima
+            sapo_obj.posicaoy += 20
+        if pygame.key.get_pressed()[K_DOWN]: #baixo
+            sapo_obj.posicaoy -= 20
+
 
                 
                 
@@ -194,15 +203,6 @@ while game:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game = False
-
-    if pygame.key.get_pressed()[K_LEFT]: #esquerda
-        x -= 20
-    if pygame.key.get_pressed()[K_RIGHT]: #direita
-        x += 20
-    if pygame.key.get_pressed()[K_UP]: #cima
-        y -= 20
-    if pygame.key.get_pressed()[K_DOWN]: #baixo
-        y += 20
 
 
     window.fill((255, 255, 255)) 
