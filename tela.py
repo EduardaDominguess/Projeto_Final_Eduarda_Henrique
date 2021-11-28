@@ -145,6 +145,50 @@ canario = False
 #geral
 game = True
 while game:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            game = False
+            sys.exit()
+            
+    #menu
+    telainicio = True
+    while telainicio:
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                game = False
+                sys.exit()
+            if evento.type == pygame.KEYDOWN:
+                if evento.key == pygame.K_RETURN or evento.key == pygame.K_KP_ENTER: #evento de início do jogo
+                    #enter_sound() ENTENDER
+                    #Resetando parâmetros do jogo
+                    abacaxi_objeto = Vidas(random.choice(lista_vidas)) 
+                    life = 0
+                    v = 5
+                    velocidade = [3,4]
+                    sapo_obj.posicaox = 290
+                    sapo_obj.posicaoy = 634
+                    sapo_obj.retangulo.left = -260
+                    sapo_obj.retangulo.top = -306
+                    vida = 3
+                    cenario = False
+                    wrong = [290, 634]
+                    j = True
+                    Timer = True
+                    telainicial = False
+        window.fill(PRETO)
+        window.blit(telainicial, (0,0)) #mostrando tela inicial do jogo
+        pygame.display.update() #atualizando a tela
+    
+    #tela principal
+    Principal = True
+    while Principal:
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                game = False
+                sys.exit()
+
+                
+                
     time.tick(10)
     window.fill((0,0,0))
     for event in pygame.event.get():
@@ -168,25 +212,6 @@ while game:
     personagem = pygame.draw.rect(window,(255,182,193),(x,y,30,30))
     barril = pygame.draw.rect(window,(255,182,193),(x1,y1,20,50))
     if y >= altura:
-        y = 0
-    #y += 5 - Oq faz ele ficar se movimentando sem comando
-    
-    #carro 1
-    if x1 >= largura:
-        x1 = 0
-    x1 += 1
-
-    #carro 2
-    if x2 >= largura:
-        x2 = 0
-    x2 += 1
-
-    #carro 3
-    if x3 >= largura:
-        x3 = 0
-    x3 += 1
-
-    if y >= largura:
         y = 0
     #y += 5 - Oq faz ele ficar se movimentando sem comando
 
