@@ -1,4 +1,6 @@
 import pygame as p
+from pygame import mixer
+import os
 
 
 class Sapo(p.sprite.Sprite):
