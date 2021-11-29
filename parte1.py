@@ -18,8 +18,8 @@ class Sapo(p.sprite.Sprite):
         self.sapo4 = p.image.load('SAPO1.4.png') #ESQUERDA
         self.sapo1 = p.transform.scale(self.sapo1, (self.width, self.height))
         self.sapo2 = p.transform.scale(self.sapo2, (self.width, self.height))
-        self.sapo3 = p.transform.scale(self.sapo2, (self.width, self.height))
-        self.sapo4 = p.transform.scale(self.sapo2, (self.width, self.height))
+        self.sapo3 = p.transform.scale(self.sapo3, (self.width, self.height))
+        self.sapo4 = p.transform.scale(self.sapo4, (self.width, self.height))
 
         self.image = self.sapo1
         self.rect = self.image.get_rect()
@@ -64,23 +64,23 @@ class Car(p.sprite.Sprite):
     def __init__(self, number):
         super().__init__()
         if number == 1:
-            self.y = 150
+            self.y = 130
             self.image = p.image.load('carro1.png')
             self.vel = 3
         elif number ==2:
-            self.y = 250
+            self.y = 220
             self.image = p.image.load('carro2.png')
             self.vel = 5
         elif number == 3:
-            self.y = 350
+            self.y = 307
             self.image = p.image.load('carro3.png')
             self.vel = 6
         elif number == 4:
-            self.y = 450
+            self.y = 395
             self.image = p.image.load('carro4.png')
             self.vel = 6.5
         else:
-            self.y = 550
+            self.y = 570
             self.image = p.image.load('carro5.png')
             self.vel = 4
 
@@ -106,39 +106,17 @@ class Car(p.sprite.Sprite):
             self.x = WIDTH - self.width / 2
             self.vel *= -1
 
-class Background(p.sprite.Sprite):
-    def __init__(self):
-        super().__init__()
-        self.img1 = p.image.load('Background.png')
-        #self.img2 = p.image.load('You Win.png')
-        self.img3 = p.image.load('Telafinal.png')
-
-        self.img1 = p.transform.scale(self.img1, (WIDTH, HEIGHT))
-        #self.img2 = p.transform.scale(self.img2, (WIDTH, HEIGHT))
-        self.img3 = p.transform.scale(self.img3, (WIDTH, HEIGHT))
-
-        self.image = self.img1
-        self.x = 0
-        self.y = 0
-
-        self.rect = self.image.get_rect()
-
-    def update(self):
-        self.rect.topleft = (self.x, self.y)
-
 
 WIDTH = 650
 HEIGHT = 700
 
 p.init()
 
-win = p.display.set_mode((WIDTH, HEIGHT))
+window = p.display.set_mode((WIDTH, HEIGHT))
+cenario = pygame.image.load(os.path.join("Background.png")).convert()
 p.display.set_caption("Don't het hit!")
 clock = p.time.Clock()
 
-backgroung = Background()
-backgroung_group = p.sprite.Group()
-backgroung_group.add(backgroung)
  
 sapo = Sapo()
 sapo_group = p.sprite.Group()
@@ -159,14 +137,15 @@ while run:
     for event in p.event.get():
         if event.type == p.QUIT:
             run = False
+            
+    window.fill((0, 255, 0))
+    window.blit(cenario, (0,0))
 
-    backgroung_group.draw(win)
 
-    sapo_group.draw(win)
-    car_group.draw(win)
+    sapo_group.draw(window)
+    car_group.draw(window)
     sapo_group.update()
     car_group.update()
-    backgroung_group.update()
 
     p.display.update()
 
