@@ -12,10 +12,14 @@ class Sapo(p.sprite.Sprite):
 
         # IMAGES
 
-        self.sapo1 = p.image.load('SAPO1.1.png')
-        self.sapo2 = p.image.load('SAPO1.3.png')
+        self.sapo1 = p.image.load('SAPO1.1.png') #FRENTE
+        self.sapo2 = p.image.load('SAPO1.3.png') #TRAS
+        self.sapo3 = p.image.load('SAPO1.2.png') #DIREITA
+        self.sapo4 = p.image.load('SAPO1.4.png') #ESQUERDA
         self.sapo1 = p.transform.scale(self.sapo1, (self.width, self.height))
         self.sapo2 = p.transform.scale(self.sapo2, (self.width, self.height))
+        self.sapo3 = p.transform.scale(self.sapo2, (self.width, self.height))
+        self.sapo4 = p.transform.scale(self.sapo2, (self.width, self.height))
 
         self.image = self.sapo1
         self.rect = self.image.get_rect()
@@ -29,9 +33,11 @@ class Sapo(p.sprite.Sprite):
         keys = p.key.get_pressed()
         if keys[p.K_LEFT]:
             self.x -= self.vel
+            self.image = self.sapo4
 
         elif keys[p.K_RIGHT]:
             self.x += self.vel
+            self.image = self.sapo3
 
         if keys[p.K_UP]:
             self.y -= self.vel
