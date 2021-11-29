@@ -32,22 +32,20 @@ class Sapo(p.sprite.Sprite):
         self.rect.center = (self.x, self.y)
 
     def movement(self):
-        keys = p.key.get_pressed()
-        if keys[p.K_LEFT]:
-            self.x -= self.vel
-            self.image = self.sapo4
-
-        elif keys[p.K_RIGHT]:
-            self.x += self.vel
-            self.image = self.sapo3
-
-        if keys[p.K_UP]:
-            self.y -= self.vel
-            self.image = self.sapo1
-
-        elif keys[p.K_DOWN]:
-            self.y += self.vel
-            self.image = self.sapo2
+        for event in p.event.get():
+            if event.type == p.KEYDOWN:
+                if event.key == p.K_LEFT:
+                    self.x -= 85
+                    self.image = self.sapo4
+                if event.key == p.K_RIGHT:
+                    self.x += 85
+                    self.image = self.sapo3
+                if event.key == p.K_UP:
+                    self.y -= 86
+                    self.image = self.sapo1
+                if event.key == p.K_DOWN:
+                    self.y += 86
+                    self.image = self.sapo2
 #Limites tela
     def correction(self):
         if self.x - self.width / 2 < 0:
