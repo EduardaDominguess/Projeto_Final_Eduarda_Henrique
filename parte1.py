@@ -112,6 +112,12 @@ HEIGHT = 700
 
 p.init()
 
+mixer.init()
+mixer.music.load(os.path.join('Musiquinha.mp3'))
+mixer.music.set_volume(0.2)
+mixer.music.play(-1)
+
+
 window = p.display.set_mode((WIDTH, HEIGHT))
 cenario = pygame.image.load(os.path.join("Background.png")).convert()
 p.display.set_caption("Don't het hit!")
