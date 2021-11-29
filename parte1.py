@@ -46,7 +46,7 @@ class Sapo(p.sprite.Sprite):
         elif keys[p.K_DOWN]:
             self.y += self.vel
             self.image = self.sapo2
-#Não sai da tela
+#Limites tela
     def correction(self):
         if self.x - self.width / 2 < 0:
             self.x = self.width / 2
