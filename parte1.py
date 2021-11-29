@@ -12,10 +12,10 @@ class Sapo(p.sprite.Sprite):
 
         # IMAGES
 
-        self.sapo1 = p.image.load('SAPO1.1.png') #FRENTE
-        self.sapo2 = p.image.load('SAPO1.3.png') #TRAS
-        self.sapo3 = p.image.load('SAPO1.2.png') #DIREITA
-        self.sapo4 = p.image.load('SAPO1.4.png') #ESQUERDA
+        self.sapo1 = p.image.load('Imagens', 'SAPO1.1.png') #FRENTE
+        self.sapo2 = p.image.load('Imagens', 'SAPO1.3.png') #TRAS
+        self.sapo3 = p.image.load('Imagens', 'SAPO1.2.png') #DIREITA
+        self.sapo4 = p.image.load('Imagens', 'SAPO1.4.png') #ESQUERDA
         self.sapo1 = p.transform.scale(self.sapo1, (self.width, self.height))
         self.sapo2 = p.transform.scale(self.sapo2, (self.width, self.height))
         self.sapo3 = p.transform.scale(self.sapo3, (self.width, self.height))
@@ -65,23 +65,23 @@ class Car(p.sprite.Sprite):
         super().__init__()
         if number == 1:
             self.y = 130
-            self.image = p.image.load('carro1.png')
+            self.image = p.image.load('Imagens', 'carro1.png')
             self.vel = 3
         elif number ==2:
             self.y = 220
-            self.image = p.image.load('carro2.png')
+            self.image = p.image.load('Imagens', 'carro2.png')
             self.vel = 5
         elif number == 3:
             self.y = 307
-            self.image = p.image.load('carro3.png')
+            self.image = p.image.load('Imagens', 'carro3.png')
             self.vel = 6
         elif number == 4:
             self.y = 395
-            self.image = p.image.load('carro4.png')
+            self.image = p.image.load('Imagens', 'carro4.png')
             self.vel = 6.5
         else:
             self.y = 570
-            self.image = p.image.load('carro5.png')
+            self.image = p.image.load('Imagens', 'carro5.png')
             self.vel = 4
 
 
@@ -113,13 +113,13 @@ HEIGHT = 700
 p.init()
 
 mixer.init()
-mixer.music.load(os.path.join('Musiquinha.mp3'))
+mixer.music.load(os.path.join('music', 'Musiquinha.mp3'))
 mixer.music.set_volume(0.2)
 mixer.music.play(-1)
 
 
 window = p.display.set_mode((WIDTH, HEIGHT))
-cenario = pygame.image.load(os.path.join("Background.png")).convert()
+cenario = pygame.image.load(os.path.join('Imagens', "Background.png")).convert()
 p.display.set_caption("Don't het hit!")
 clock = p.time.Clock()
 
