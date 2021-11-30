@@ -27,25 +27,23 @@ class Sapo(p.sprite.Sprite):
         self.rect = self.image.get_rect()
 
     def update(self):
-        self.movement()
+        self.movement_up()
+        self.movement_down()
+        self.movement_left()
+        self.movement_right()
         self.correction()
         self.rect.center = (self.x, self.y)
 
-    def movement(self):
-        for event in p.event.get():
-            if event.type == p.KEYDOWN:
-                if event.key == p.K_LEFT:
-                    self.x -= 85
-                    self.image = self.sapo4
-                if event.key == p.K_RIGHT:
-                    self.x += 85
-                    self.image = self.sapo3
-                if event.key == p.K_UP:
-                    self.y -= 86
-                    self.image = self.sapo1
-                if event.key == p.K_DOWN:
-                    self.y += 86
-                    self.image = self.sapo2
+    def movement_left(self):
+        self.x -= 85
+    def movement_right(self):
+        self.x += 85
+    def movement_up(self):
+        self.y -= 86
+    def movement_down(self):
+        self.y += 86
+        
+
 #Limites tela
     def correction(self):
         if self.x - self.width / 2 < 0:
@@ -143,6 +141,31 @@ while run:
     for event in p.event.get():
         if event.type == p.QUIT:
             run = False
+        if event.type == p.KEYDOWN:
+                if event.key == p.K_UP:
+                    sapo.movement_up()
+                    sapo.image = sapo.sapo1
+                    if sapo.x == 48 and sapo.y == 2:
+                        sapo.movement_down()
+                        sapo.image = sapo.sapo2
+                    else:
+                        pass
+                if event.key == p.K_DOWN:
+                    sapo.movement_down()  
+                    sapo.image = sapo.sapo2              
+                if event.key == p.K_RIGHT: 
+                    sapo.movement_right()
+                    sapo.image = sapo.sapo3
+                    j = False
+                if event.key == p.K_LEFT:
+                    sapo.movement_left()
+                    sapo.image = sapo.sapo4
+                    if sapo.x == 48 and sapo.y == 2:
+                        sapo.movement_right()
+                        sapo.image = sapo.sapo3
+                    else:
+                        pass
+                    
             
     window.fill((0, 255, 0))
     window.blit(cenario, (0,0))
