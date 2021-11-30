@@ -1,6 +1,8 @@
 import pygame as p
 from pygame import mixer
 import os
+from funcoes import colisao
+
 
 
 class Sapo(p.sprite.Sprite):
@@ -175,6 +177,23 @@ while run:
     car_group.draw(window)
     sapo_group.update()
     car_group.update()
+    
+    if colisao([sapo.x,sapo.y], [carro1.x,carro1.y]) == True:
+        sapo.x = WIDTH/2
+        sapo.y = HEIGHT
+    if colisao([sapo.x,sapo.y], [carro2.x,carro2.y]) == True:
+        sapo.x = WIDTH/2
+        sapo.y = HEIGHT
+    if colisao([sapo.x,sapo.y], [carro3.x,carro3.y]) == True:
+        sapo.x = WIDTH/2
+        sapo.y = HEIGHT
+    if colisao([sapo.x,sapo.y], [carro4.x,carro4.y]) == True:
+        sapo.x = WIDTH/2
+        sapo.y = HEIGHT
+    if colisao([sapo.x,sapo.y], [carro5.x,carro5.y]) == True:
+        sapo.x = WIDTH/2
+        sapo.y = HEIGHT
+
 
     p.display.update()
 
