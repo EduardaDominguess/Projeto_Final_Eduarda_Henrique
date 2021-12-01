@@ -1,9 +1,5 @@
 # **Projeto Final de Design de Software - 2021 - Turma A**
 
-## **Grupo**:
-- Eduarda Domingues
-- Henrique Krepel
-
 ## **Don't get hit!**
 Seu objetivo é coletar o maior número de moedas possíveis espalhadas pela cidade. Porém existe obstáculos, carros passando, então cuidado para não ser atropelado. E lembre-se cada vez mais o movimento da cidade aumenta. 
 
@@ -23,3 +19,7 @@ Seu objetivo é coletar o maior número de moedas possíveis espalhadas pela cid
 
 ## **Vídeo explicativo**
 link
+
+## **Grupo**:
+- Eduarda Domingues
+- Henrique Krepel
