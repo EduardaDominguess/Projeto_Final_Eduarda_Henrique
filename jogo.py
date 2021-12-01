@@ -182,6 +182,9 @@ class EndScreen(sprite.Sprite):
 
     def update(self):
         self.rect.topleft = (self.x, self.y)
+        
+WIDTH = 650
+HEIGHT = 700
 
 
 mixer.init()
