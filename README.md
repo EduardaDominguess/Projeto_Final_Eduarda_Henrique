@@ -1,9 +1,9 @@
-# Projeto_Final_Eduarda_Henrique
-Projeto Final de Design de Software - 2021 - Turma A
+# **Projeto Final de Design de Software - 2021 - Turma A**
+# **Don't get hit!**
 
-Grupo: 
+## **Grupo**:
 - Eduarda Domingues
 - Henrique Krepel
 
+## **Introdução:**
 
-*Donkey Kong*
