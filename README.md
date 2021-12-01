@@ -13,7 +13,7 @@ Seu objetivo é coletar o maior número de moedas possíveis espalhadas pela cid
 3. Rode o arquivo 'jogo.py'
 4. Comece a jogar!
 
-## *Como jogar**
+## **Como jogar**
 1. Pressione Enter para iniciar
 2. Com as setas no seu teclado mova o sapo ao redor da cidade para coletar as moedas e cuidado para não ser atropelado. 
 3. **Lembre-se!** A pontuação e o movimento da cidade aumentam conforme você coleta moedas. 
@@ -21,5 +21,5 @@ Seu objetivo é coletar o maior número de moedas possíveis espalhadas pela cid
 5. Você terá três vidas, e após isso o jogo acaba.  
 6. Boa sorte!
 
-## *Vídeo explicativo**
+## **Vídeo explicativo**
 link
