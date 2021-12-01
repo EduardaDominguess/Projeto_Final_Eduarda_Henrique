@@ -1,200 +1,110 @@
-import pygame as p
-from pygame import mixer
 import os
-from funcoes import colisao
+import pygame
+from pygame import mixer, sprite
+from funcoes import checkCoin, checkColision, incrementCarsVelocity, isAlive, removeOneLife, showFinalScore, showScore
+from random import randint
+from classes import *
 
 
-
-class Sapo(p.sprite.Sprite):
-    def __init__(self):
-        super().__init__()
-        self.x = WIDTH/2
-        self.y = HEIGHT
-        self.vel = 4
-        self.width = 100
-        self.height = 100
-
-        # IMAGES
-
-        self.sapo1 = p.image.load('Imagens', 'SAPO1.1.png') #FRENTE
-        self.sapo2 = p.image.load('Imagens', 'SAPO1.3.png') #TRAS
-        self.sapo3 = p.image.load('Imagens', 'SAPO1.2.png') #DIREITA
-        self.sapo4 = p.image.load('Imagens', 'SAPO1.4.png') #ESQUERDA
-        self.sapo1 = p.transform.scale(self.sapo1, (self.width, self.height))
-        self.sapo2 = p.transform.scale(self.sapo2, (self.width, self.height))
-        self.sapo3 = p.transform.scale(self.sapo3, (self.width, self.height))
-        self.sapo4 = p.transform.scale(self.sapo4, (self.width, self.height))
-
-        self.image = self.sapo1
-        self.rect = self.image.get_rect()
-
-    def update(self):
-        self.movement_up()
-        self.movement_down()
-        self.movement_left()
-        self.movement_right()
-        self.correction()
-        self.rect.center = (self.x, self.y)
-
-    def movement_left(self):
-        self.x -= 85
-    def movement_right(self):
-        self.x += 85
-    def movement_up(self):
-        self.y -= 86
-    def movement_down(self):
-        self.y += 86
-        
-
-#Limites tela
-    def correction(self):
-        if self.x - self.width / 2 < 0:
-            self.x = self.width / 2
-
-        elif self.x + self.width / 2 > WIDTH:
-            self.x = WIDTH - self.width / 2
-
-        if self.y - self.height / 2 < 0:
-            self.y = self.height / 2
-
-        elif self.y + self.height / 2 > HEIGHT:
-            self.y = HEIGHT - self.height / 2
-
-class Car(p.sprite.Sprite):
-    def __init__(self, number):
-        super().__init__()
-        if number == 1:
-            self.y = 130
-            self.image = p.image.load('Imagens', 'carro1.png')
-            self.vel = 3
-        elif number ==2:
-            self.y = 220
-            self.image = p.image.load('Imagens', 'carro2.png')
-            self.vel = 5
-        elif number == 3:
-            self.y = 307
-            self.image = p.image.load('Imagens', 'carro3.png')
-            self.vel = 6
-        elif number == 4:
-            self.y = 395
-            self.image = p.image.load('Imagens', 'carro4.png')
-            self.vel = 6.5
-        else:
-            self.y = 570
-            self.image = p.image.load('Imagens', 'carro5.png')
-            self.vel = 4
-
-
-        self.x = WIDTH / 2
-        self.width = 80
-        self.height = 80
-        self.image = p.transform.scale(self.image, (self.width, self.height))
-        self.rect = self.image.get_rect()
-
-    def update(self):
-        self.movement()
-        self.rect.center = (self.x, self.y)
-
-    def movement(self):
-        self.x += self.vel
-
-        if self.x - self.width / 2 < 0:
-            self.x = self.width / 2
-            self.vel *= -1
-
-        elif self.x + self.width / 2 > WIDTH:
-            self.x = WIDTH - self.width / 2
-            self.vel *= -1
-
-
-WIDTH = 650
-HEIGHT = 700
-
-p.init()
 
 mixer.init()
-mixer.music.load(os.path.join('music', 'Musiquinha.mp3'))
-mixer.music.set_volume(0.2)
+mixer.music.load(os.path.join('soundtrack.mp3'))
+mixer.music.set_volume(0.02)
 mixer.music.play(-1)
 
+pygame.init()
+pygame.display.set_caption("Don't get hit!")
+window = pygame.display.set_mode((WIDTH, HEIGHT))
+clock = pygame.time.Clock()
 
-window = p.display.set_mode((WIDTH, HEIGHT))
-cenario = pygame.image.load(os.path.join('Imagens', "Background.png")).convert()
-p.display.set_caption("Don't het hit!")
-clock = p.time.Clock()
+startScreen = StartScreen()
+startScreenGroup = sprite.Group()
+startScreenGroup.add(startScreen)
 
- 
-sapo = Sapo()
-sapo_group = p.sprite.Group()
-sapo_group.add(sapo)
+background = Background()
+backgroundGroup = sprite.Group()
+backgroundGroup.add(background)
 
-carro1 = Car(1)
-carro2 = Car(2)
-carro3 = Car(3)
-carro4 = Car(4)
-carro5 = Car(5)
-car_group = p.sprite.Group()
-car_group.add(carro1,carro2,carro3,carro4,carro5)
-
-
-run = True
-while run:
+isRunning = True
+gameStarted = False
+gameEnd = False
+while isRunning:
     clock.tick(60)
-    for event in p.event.get():
-        if event.type == p.QUIT:
-            run = False
-        if event.type == p.KEYDOWN:
-                if event.key == p.K_UP:
-                    sapo.movement_up()
-                    sapo.image = sapo.sapo1
-                    if sapo.x == 48 and sapo.y == 2:
-                        sapo.movement_down()
-                        sapo.image = sapo.sapo2
-                    else:
-                        pass
-                if event.key == p.K_DOWN:
-                    sapo.movement_down()  
-                    sapo.image = sapo.sapo2              
-                if event.key == p.K_RIGHT: 
-                    sapo.movement_right()
-                    sapo.image = sapo.sapo3
-                    j = False
-                if event.key == p.K_LEFT:
-                    sapo.movement_left()
-                    sapo.image = sapo.sapo4
-                    if sapo.x == 48 and sapo.y == 2:
-                        sapo.movement_right()
-                        sapo.image = sapo.sapo3
-                    else:
-                        pass
-                    
-            
-    window.fill((0, 255, 0))
-    window.blit(cenario, (0,0))
-
-
-    sapo_group.draw(window)
-    car_group.draw(window)
-    sapo_group.update()
-    car_group.update()
+    for event in pygame.event.get():
+        startScreenGroup.draw(window)
+        startScreenGroup.update()
+        if event.type == pygame.QUIT:
+            isRunning = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN:
+                if not gameEnd and not gameStarted:
+                    font = pygame.font.SysFont('helvetica', 30)
+                    gameStarted = True
+                    startScreen.kill()
+                    CURRENT_SCORE = 0
+                    frog = Frog()
+                    life1 = Life(1)
+                    life2 = Life(2)
+                    life3 = Life(3)
+                    lifeList = [life1, life2, life3]
+                    lifeGroup = sprite.Group()
+                    lifeGroup.add(life1, life2, life3)
+                    car1 = Car(1)
+                    car2 = Car(2)
+                    car3 = Car(3)
+                    car4 = Car(4)
+                    car5 = Car(5)
+                    carGroup = sprite.Group()
+                    carGroup.add(car1, car2, car3, car4, car5)
+                    coin = Coin()
+                    spriteGroup = sprite.Group()
+                    spriteGroup.add(backgroundGroup, frog, carGroup, coin, lifeGroup)
+                elif gameEnd and not gameStarted:
+                    endScreen.kill()
+                    startScreen = StartScreen()
+                    startScreenGroup = sprite.Group()
+                    startScreenGroup.add(startScreen)
+                    startScreenGroup.draw(window)
+                    startScreenGroup.update()
+                    gameEnd = False
+            if gameStarted:
+                if event.key == pygame.K_UP:
+                    frog.movement_up()
+                    frog.image = frog.imageUp
+                if event.key == pygame.K_DOWN:
+                    frog.movement_down()  
+                    frog.image = frog.imageDown              
+                if event.key == pygame.K_RIGHT: 
+                    frog.movement_right()
+                    frog.image = frog.imageRight
+                if event.key == pygame.K_LEFT:
+                    frog.movement_left()
+                    frog.image = frog.imageLeft
     
-    if colisao([sapo.x,sapo.y], [carro1.x,carro1.y]) == True:
-        sapo.x = WIDTH/2
-        sapo.y = HEIGHT
-    if colisao([sapo.x,sapo.y], [carro2.x,carro2.y]) == True:
-        sapo.x = WIDTH/2
-        sapo.y = HEIGHT
-    if colisao([sapo.x,sapo.y], [carro3.x,carro3.y]) == True:
-        sapo.x = WIDTH/2
-        sapo.y = HEIGHT
-    if colisao([sapo.x,sapo.y], [carro4.x,carro4.y]) == True:
-        sapo.x = WIDTH/2
-        sapo.y = HEIGHT
-    if colisao([sapo.x,sapo.y], [carro5.x,carro5.y]) == True:
-        sapo.x = WIDTH/2
-        sapo.y = HEIGHT
+    if gameStarted:
+        spriteGroup.draw(window)
+        showScore(window, font, CURRENT_SCORE)
+        spriteGroup.update()
 
+        if checkColision(frog, carGroup):
+            frog.reset_pos()
+            removeOneLife(lifeList)
+            if not isAlive(lifeList):
+                gameStarted = False
+                gameEnd = True
+                endScreen = EndScreen()
+                endScreenGroup = sprite.Group()
+                endScreenGroup.add(endScreen)
+                endScreenGroup.draw(window)
+                endScreenGroup.update()
+                font = pygame.font.SysFont('helvetica', 40, True)
+                showFinalScore(window, font, CURRENT_SCORE)
+        
+        if checkCoin(frog, coin):
+            CURRENT_SCORE += 1
+            coin.reappear()
+            incrementCarsVelocity(carGroup)
+    
+    pygame.display.update()
 
-    p.display.update()
-
-p.quit()
+pygame.quit()
