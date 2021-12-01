@@ -18,7 +18,7 @@ Seu objetivo é coletar o maior número de moedas possíveis espalhadas pela cid
 6. Boa sorte!
 
 ## **Vídeo explicativo**
-link
+https://youtu.be/dKrkMNj-o2k
 
 ## **Grupo**:
 - Eduarda Domingues
