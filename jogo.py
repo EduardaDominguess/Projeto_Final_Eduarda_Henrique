@@ -12,10 +12,10 @@ class Frog(sprite.Sprite):
         self.width = 100
         self.height = 100
 
-        self.imageUp = pygame.image.load('frog-up.png')
-        self.imageDown = pygame.image.load('frog-down.png')
-        self.imageRight = pygame.image.load('frog-right.png')
-        self.imageLeft = pygame.image.load('frog-left.png')
+        self.imageUp = pygame.image.load('imagens','frog-up.png')
+        self.imageDown = pygame.image.load('imagens','frog-down.png')
+        self.imageRight = pygame.image.load('imagens','frog-right.png')
+        self.imageLeft = pygame.image.load('imagens','frog-left.png')
         self.imageUp = pygame.transform.scale(self.imageUp, (self.width, self.height))
         self.imageDown = pygame.transform.scale(self.imageDown, (self.width, self.height))
         self.imageRight = pygame.transform.scale(self.imageRight, (self.width, self.height))
@@ -64,23 +64,23 @@ class Car(sprite.Sprite):
         super().__init__()
         if number == 1:
             self.y = 130
-            self.image = pygame.image.load('car-1.png')
+            self.image = pygame.image.load('imagens','car-1.png')
             self.velocity = 5.1
         elif number == 2:
             self.y = 220
-            self.image = pygame.image.load('car-2.png')
+            self.image = pygame.image.load('imagens','car-2.png')
             self.velocity = -3.5
         elif number == 3:
             self.y = 307
-            self.image = pygame.image.load('car-3.png')
+            self.image = pygame.image.load('imagens','car-3.png')
             self.velocity = 3
         elif number == 4:
             self.y = 395
-            self.image = pygame.image.load('car-4.png')
+            self.image = pygame.image.load('imagens','car-4.png')
             self.velocity = -4
         else:
             self.y = 570
-            self.image = pygame.image.load('car-6.png')
+            self.image = pygame.image.load('imagens','car-6.png')
             self.velocity = -3.2
 
         self.x = WIDTH / 2
@@ -110,7 +110,7 @@ class Coin(sprite.Sprite):
         self.width = 56
         self.height = 56
 
-        self.image = pygame.image.load('coin.png')
+        self.image = pygame.image.load('imagens','coin.png')
         self.image = pygame.transform.scale(self.image, (self.width, self.height))
         self.rect = self.image.get_rect()
 
@@ -130,7 +130,7 @@ class Life(sprite.Sprite):
         self.x = self.width * count * 1.1
         self.y = self.height - 10
 
-        self.image = pygame.image.load('heart.png')
+        self.image = pygame.image.load('imagens','heart.png')
         self.image = pygame.transform.scale(self.image, (self.width, self.height))
         self.rect = self.image.get_rect()
 
@@ -141,7 +141,7 @@ class Life(sprite.Sprite):
 class Background(sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.background = pygame.image.load('background.png')
+        self.background = pygame.image.load('imagens','background.png')
         self.background = pygame.transform.scale(self.background, (WIDTH, HEIGHT))
 
         self.image = self.background
@@ -156,7 +156,7 @@ class Background(sprite.Sprite):
 class StartScreen(sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.background = pygame.image.load('start-screen.png')
+        self.background = pygame.image.load('imagens','start-screen.png')
         self.background = pygame.transform.scale(self.background, (WIDTH, HEIGHT))
 
         self.image = self.background
@@ -171,7 +171,7 @@ class StartScreen(sprite.Sprite):
 class EndScreen(sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.background = pygame.image.load('end-screen.png')
+        self.background = pygame.image.load('imagens','end-screen.png')
         self.background = pygame.transform.scale(self.background, (WIDTH, HEIGHT))
 
         self.image = self.background
@@ -188,7 +188,7 @@ HEIGHT = 700
 
 
 mixer.init()
-mixer.music.load(os.path.join('soundtrack.mp3'))
+mixer.music.load(os.path.join('musicas','soundtrack.mp3'))
 mixer.music.set_volume(0.02)
 mixer.music.play(-1)
 
